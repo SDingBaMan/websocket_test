@@ -1,4 +1,4 @@
-package com.momo.springbootwebsocket.service;
+package com.momo.springbootwebsocket.websocket.service;
 
 import org.springframework.stereotype.Service;
 

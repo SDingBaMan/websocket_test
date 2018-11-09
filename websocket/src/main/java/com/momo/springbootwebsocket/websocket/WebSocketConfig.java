@@ -1,4 +1,4 @@
-package com.momo.springbootwebsocket;
+package com.momo.springbootwebsocket.websocket;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
