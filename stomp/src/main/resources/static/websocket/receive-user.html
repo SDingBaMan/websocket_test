@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,12 +12,13 @@
         <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
         <script type="text/javascript">
             var noticeSocket = function() {
-                var s = new SockJS('/socket');
+                var s = new SockJS('/wsuser');
                 var stompClient = Stomp.over(s);
                 stompClient.connect({}, function() {
                    console.log('notice socket connected!');
                    // 订阅消息地址
-                    stompClient.subscribe('/sub/chat', function (data) {
+                    stompClient.subscribe('/user/queue/customer', function(data) {
+                        console.log(data);
                        $('#receive').html(data.body); 
                     });
                 });

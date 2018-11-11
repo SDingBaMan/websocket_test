@@ -5,7 +5,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -15,7 +14,7 @@ import java.security.Principal;
  * @date: 2018/11/9
  */
 @Controller
-@RequestMapping("/websocket")
+@RequestMapping("/static/websocket")
 public class WebSocketController {
     
     @Autowired
@@ -40,29 +39,5 @@ public class WebSocketController {
         // 发送到用户和监听地址
         simpMessagingTemplate.convertAndSendToUser(desUser, "/queue/customer", message);
     }
-    
-    // 发送页面
-    @GetMapping("/send")
-    public String send() {
-        return "send";
-    }
 
-    // 接收页面
-    @GetMapping("/receive")
-    public String receive() {
-        return "receive";
-    }
-    
-    // 对特定用户发送页面
-    @GetMapping("/sendUser")
-    public String sendUser() {
-        return "send-user";
-    }
-    
-    // 接收用户消息页面
-    @GetMapping("/receiveUser")
-    public String receiveUser() {
-        return "receive-user";
-    }
-        
 }
