@@ -28,11 +28,7 @@ public class WebSocketService {
         webSocketServiceSet.add(this);
         addOnlineCount();
         System.out.println("有新连接加入，当前在线人数：" + getOnlineCount());
-        try {
-            sendMessage("有新连接加入了！");
-        } catch (Exception e) {
-            System.out.println("IO异常");
-        }
+        sendMsg("有新连接加入了！我是熊帅配置的自动回复测试接口- ");
     }
 
     // 标注客户端关闭WebSocket服务端点调用方法
@@ -47,20 +43,30 @@ public class WebSocketService {
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("来自客户端的消息：" + message);
-
         for (WebSocketService webSocketService : webSocketServiceSet) {
-
             try {
                 // 获取当前用户名称
 //                String userName = webSocketService.getSession().getUserPrincipal().getName();
-                webSocketService.sendMessage(message);
+                webSocketService.sendMessage("我是群发" + message);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        sendMsg("我是熊帅配置的自动回复测试接口- 你说什么我回复什么《" + message + "》");
     }
 
-    // 标注客户端请求WebSocket服务端点发生异常调用方法
+    private void sendMsg(String desc) {
+        try {
+            sendMessage(desc);
+        } catch (Exception e) {
+            System.out.println("IO异常");
+        }
+    }
+
+    /**
+     * 标注客户端请求WebSocket服务端点发生异常调用方法
+     */
     @OnError
     public void onError(Session session, Throwable error) {
         System.out.println("发生错误");
